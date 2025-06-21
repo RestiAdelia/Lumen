@@ -2,8 +2,6 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Http\Controllers\UsersController;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,21 +16,11 @@ use App\Http\Controllers\UsersController;
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
 $router->get('/', function () use ($router) {
     return response()->json(['message' => 'API Ready']);
 });
-$router->get('/hello', function () use ($router) {
-    return response()->json(['message' => 'Hello Resti']);
-});
-$router->get('/User','UsersController@index');
 
-$router->group(['prefix' => 'api/dosen'], function () use ($router) {
-    $router->get('/', 'DosenController@index');         // Get all
-    $router->get('{no}', 'DosenController@show');       // Get by ID
-    $router->post('/', 'DosenController@store');        // Create
-    $router->put('{no}', 'DosenController@update');     // Update
-    $router->delete('{no}', 'DosenController@destroy'); // Delete
-});
 $router->group(['prefix' => 'api/rumah-sakit'], function () use ($router) {
     $router->get('/', 'RumahSakitController@index');//get all
     $router->get('{id}', 'RumahSakitController@show');// get by id
